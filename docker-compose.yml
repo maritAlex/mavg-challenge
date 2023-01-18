@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./.data/postgresql:/var/lib/postgresql/data
+  mavg-challenge:
+    image: mavg/mavg-challenge
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
